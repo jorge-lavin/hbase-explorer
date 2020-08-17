@@ -10,3 +10,6 @@ gradle/wrapper/gradle-wrapper.jar
 # Java compilation
 build
 out
+
+# Version file
+src/main/resources/version.properties

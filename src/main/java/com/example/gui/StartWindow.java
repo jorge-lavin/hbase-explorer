@@ -1,7 +1,10 @@
 package com.example.gui;
 
+import com.example.AppVersion;
+
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 
 //A menu on top, clusters panel on the left and tables panel on the right.
 public class StartWindow extends JFrame
@@ -10,11 +13,12 @@ public class StartWindow extends JFrame
     private final ClustersPanel clustersPanel = new ClustersPanel();
     private final TablesPanel tablesPanel = new TablesPanel();
 
-    public StartWindow()
+    public StartWindow(AppVersion appVersion)
     {
         super();
         setSize(new Dimension(640, 480)); // FIXME Hardcoded
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("HBase Explorer " + appVersion);
 
         setJMenuBar(menuBar);
 
@@ -24,4 +28,5 @@ public class StartWindow extends JFrame
 
         setVisible(true);
     }
+
 }

@@ -3,33 +3,25 @@ package com.example.gui;
 import com.example.business.ZookeeperCluster;
 import com.example.business.ZookeeperNode;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreeNode;
-import java.awt.*;
-import java.util.Arrays;
-import java.util.List;
+import java.awt.GridLayout;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ClustersPanel extends JPanel
 {
-    private final static String border = "Clusters";
-
     private final static String addClusterLabel = "Add Cluster";
     private final static String removeClusterLabel = "Remove Cluster";
 
-
     private ClustersTree clustersTree;
-
     private JButton addCluster;
     private JButton removeCluster;
 
     public ClustersPanel()
     {
-        setBorder(BorderFactory.createTitledBorder(border));
-        setOpaque(true);
         setLayout(new GridLayout(2,1));
         clustersTree = new ClustersTree(ClustersTree.rootNode());
 

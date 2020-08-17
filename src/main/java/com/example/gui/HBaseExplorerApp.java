@@ -1,13 +1,14 @@
 package com.example.gui;
 
+import com.example.AppVersion;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.swing.SwingUtilities;
 
-// TODO log
-// TODO title
-// TODO icon
-// TODO LoadVersion from file
 public class HBaseExplorerApp
 {
+    private final static Logger logger = LoggerFactory.getLogger(HBaseExplorerApp.class);
 
     public static void main(String[] args)
     {
@@ -16,6 +17,10 @@ public class HBaseExplorerApp
 
     public static void createAndShowGUI()
     {
-        final StartWindow window = new StartWindow();
+        AppVersion appVersion = AppVersion.fromVersionFile();
+        appVersion.log(logger);
+
+        new StartWindow(appVersion);
     }
+
 }
