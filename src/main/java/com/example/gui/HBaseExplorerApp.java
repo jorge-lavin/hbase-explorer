@@ -2,7 +2,10 @@ package com.example.gui;
 
 import javax.swing.SwingUtilities;
 
-
+// TODO log
+// TODO title
+// TODO icon
+// TODO LoadVersion from file
 public class HBaseExplorerApp
 {
 
