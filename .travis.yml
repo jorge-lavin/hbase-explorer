@@ -1,7 +1,12 @@
 language: java
 
 before_install:
-  gradle wrapper
+  - gradle wrapper
+  - chmod +w gradlew
+
+script:
+  - ./gradlew check
+  - ./gradlew codeCoverageReport
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
