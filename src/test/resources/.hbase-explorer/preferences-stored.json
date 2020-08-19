@@ -1,1 +1,1 @@
-{"clusters":[{"name":"foo","nodes":[{"host":"foo-1","port":2181},{"host":"foo-2","port":2181}]},{"name":"bar","nodes":[{"host":"bar-1","port":2181},{"host":"bar-2","port":2181}]}]}
+{"clusters":[{"name":"foo","nodes":[{"host":"foo-1","port":2181},{"host":"foo-2","port":2181}]},{"name":"bar","nodes":[{"host":"bar-2","port":2181},{"host":"bar-1","port":2181}]}]}

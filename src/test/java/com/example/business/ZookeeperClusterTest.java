@@ -15,6 +15,6 @@ public class ZookeeperClusterTest extends TestCase
 
     public void testToString()
     {
-        ToStringVerifier.forClass(ZookeeperCluster.class).withClassName(NameStyle.SIMPLE_NAME).verify();
+        ToStringVerifier.forClass(ZookeeperCluster.class).withClassName(null).verify();
     }
 }

@@ -17,7 +17,7 @@ public class ZookeeperCluster
 
     @Override
     public String toString() {
-       return "ZookeeperCluster{name=" + name + ",nodes=" + nodesToString() +"}";
+       return "ZookeeperCluster{name=" + name + ",nodes=[" + nodesToString() +"]}";
     }
 
     @Override
@@ -25,12 +25,12 @@ public class ZookeeperCluster
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ZookeeperCluster that = (ZookeeperCluster) o;
-        return Objects.equals(name, that.name);
+        return Objects.equals(name, that.name) && Objects.equals(nodes, that.nodes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, nodes);
     }
 
     private String nodesToString()

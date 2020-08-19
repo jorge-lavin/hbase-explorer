@@ -4,6 +4,7 @@ import com.jparams.verifier.tostring.NameStyle;
 import com.jparams.verifier.tostring.ToStringVerifier;
 import junit.framework.TestCase;
 import nl.jqno.equalsverifier.EqualsVerifier;
+import org.junit.Assert;
 
 public class ZookeeperNodeTest extends TestCase
 {
@@ -14,6 +15,9 @@ public class ZookeeperNodeTest extends TestCase
 
     public void testToString()
     {
-        ToStringVerifier.forClass(ZookeeperNode.class).withClassName(NameStyle.SIMPLE_NAME).verify();
+        String expected = "host:123";
+        String actual = new ZookeeperNode("host", 123).toString();
+
+        Assert.assertEquals(expected, actual);
     }
 }

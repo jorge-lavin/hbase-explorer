@@ -12,6 +12,7 @@ public class ResourcesFileAppVersionLoader implements AppVersionLoader
 {
     private final static Logger logger = LoggerFactory.getLogger(ResourcesFileAppVersionLoader.class);
     private final static String DEFAULT_FILE_PATH = "version.properties";
+    private final static ClassLoader DEFAULT_CLASS_LOADER = ResourcesFileAppVersionLoader.class.getClassLoader();
 
     private final static String VERSION_PROPERTY_NAME = "version";
     private final static String AUTHOR_PROPERTY_NAME = "author";
@@ -20,11 +21,20 @@ public class ResourcesFileAppVersionLoader implements AppVersionLoader
     private final static String MESSAGE_PROPERTY_NAME = "message";
     private final static String TIMESTAMP_PROPERTY_NAME = "timestamp";
 
+    // TODO Why a ClassLoader instead of a simple path.
+    private final ClassLoader classloader;
     private final String filePath;
+
+
+    ResourcesFileAppVersionLoader(ClassLoader classloader, String filePath)
+    {
+        this.classloader = classloader;
+        this.filePath = filePath;
+    }
 
     public ResourcesFileAppVersionLoader(String filePath)
     {
-        this.filePath = filePath;
+        this(DEFAULT_CLASS_LOADER, filePath);
     }
 
     public ResourcesFileAppVersionLoader()
@@ -35,7 +45,7 @@ public class ResourcesFileAppVersionLoader implements AppVersionLoader
     @Override
     public AppVersion load()
     {
-        URL url = AppVersion.class.getClassLoader().getResource(filePath);
+        URL url = classloader.getResource(filePath);
         if (url == null)
         {
             logger.debug("No version file located at {}", filePath);
@@ -54,7 +64,7 @@ public class ResourcesFileAppVersionLoader implements AppVersionLoader
             Long timestamp = Long.valueOf(properties.getProperty(TIMESTAMP_PROPERTY_NAME));
             return new AppVersion(version, author, branch, hash, message, timestamp);
         }
-        catch (IOException ex)
+        catch (Exception ex)
         {
             logger.error("An error happened loading version file", ex);
             return null;
