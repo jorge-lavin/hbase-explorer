@@ -42,7 +42,7 @@ public class UserPreferencesFileRepositoryTest extends TestCase
     {
         UserPreferencesFileRepository repo = new UserPreferencesFileRepository();
         // If the file is present, we dont know its contents. Just test for null or not null accordingly.
-        if (UserPreferencesFileRepository.defaultSettingsFile.exists())
+        if (UserPreferencesFileRepository.defaultSettingsFile.exists() && UserPreferencesFileRepository.defaultSettingsFile.length() != 0)
         {
             Assert.assertNotNull(repo.load());
         }
@@ -121,6 +121,7 @@ public class UserPreferencesFileRepositoryTest extends TestCase
 
     private void backup(Path backupTemporalFile) throws IOException
     {
+        if (!UserPreferencesFileRepository.defaultSettingsFile.exists()) return;
         copyReplacing(UserPreferencesFileRepository.defaultSettingsFile.toPath(), backupTemporalFile);
     }
 
