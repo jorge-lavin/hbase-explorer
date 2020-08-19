@@ -1,6 +1,5 @@
 package com.example.business;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,7 +17,7 @@ public class ZookeeperCluster
 
     @Override
     public String toString() {
-        return nodes.stream().map(ZookeeperNode::toString).collect(Collectors.joining(","));
+       return "ZookeeperCluster{name=" + name + ",nodes=" + nodesToString() +"}";
     }
 
     @Override
@@ -32,5 +31,10 @@ public class ZookeeperCluster
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    private String nodesToString()
+    {
+        return nodes.stream().map(ZookeeperNode::toString).collect(Collectors.joining(","));
     }
 }

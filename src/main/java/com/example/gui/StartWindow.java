@@ -1,6 +1,6 @@
 package com.example.gui;
 
-import com.example.AppVersion;
+import com.example.app.AppVersion;
 
 import javax.swing.*;
 import java.awt.Dimension;
@@ -18,7 +18,7 @@ public class StartWindow extends JFrame
         super();
         setSize(new Dimension(640, 480)); // FIXME Hardcoded
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("HBase Explorer " + appVersion);
+        setTitle(title(appVersion));
 
         setJMenuBar(menuBar);
 
@@ -27,6 +27,11 @@ public class StartWindow extends JFrame
         add(tablesPanel);
 
         setVisible(true);
+    }
+
+    private static String title(AppVersion appVersion)
+    {
+        return "HBase Explorer " + appVersion.version();
     }
 
 }

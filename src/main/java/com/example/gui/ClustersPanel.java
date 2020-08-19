@@ -1,15 +1,14 @@
 package com.example.gui;
 
+import com.example.app.UserPreferencesFileRepository;
 import com.example.business.ZookeeperCluster;
-import com.example.business.ZookeeperNode;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.GridLayout;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.List;
 
 public class ClustersPanel extends JPanel
 {
@@ -74,23 +73,10 @@ public class ClustersPanel extends JPanel
     }
 
 
-    // TODO Obtain clusters from user-preferences.
-    private ZookeeperCluster[] clusters()
-    {
-        return new ZookeeperCluster[]{
-            new ZookeeperCluster("local",
-                Stream.of(
-                    new ZookeeperNode("localhost", 2181),
-                    new ZookeeperNode("localhost", 2182),
-                    new ZookeeperNode("localhost", 2183)
-                ).collect(Collectors.toSet())),
 
-            new ZookeeperCluster("pre",
-                Stream.of(
-                    new ZookeeperNode("dev", 2181),
-                    new ZookeeperNode("dev", 2182),
-                    new ZookeeperNode("localhost", 2183)
-                ).collect(Collectors.toSet())),
-        };
+    private List<ZookeeperCluster> clusters()
+    {
+        // TODO This interface should be injected somehow.
+        return new UserPreferencesFileRepository().load().clusters;
     }
 }

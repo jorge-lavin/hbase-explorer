@@ -10,8 +10,17 @@ repositories {
 }
 
 dependencies {
+    // needed for logging
     implementation("org.apache.logging.log4j", "log4j-slf4j-impl", "2.13.3")
+
+    // needed to serialize-deserialize objects such as UserPreferences
+    implementation("com.google.code.gson", "gson", "2.8.6")
+
     testImplementation("junit", "junit", "4.12")
+    // Helps testing equals and hashcode.
+    testImplementation("nl.jqno.equalsverifier", "equalsverifier", "3.4.1")
+    // Helps testing toString
+    testImplementation ("com.jparams", "to-string-verifier" ,"1.4.8")
 
 }
 
@@ -62,7 +71,8 @@ tasks.register("writeVersionFile") {
             versionFile.appendLine("branch=${branch}")
             versionFile.appendLine("hash=${hash}")
             versionFile.appendLine("message=${message}")
-            versionFile.appendLine("timestamp=${timestamp}")
+            // Last one does not need to include a line feed.
+            versionFile.appendText("timestamp=${timestamp}")
         }
         catch (ex: java.io.IOException)
         {

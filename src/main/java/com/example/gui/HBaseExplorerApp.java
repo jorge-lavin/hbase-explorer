@@ -1,6 +1,7 @@
 package com.example.gui;
 
-import com.example.AppVersion;
+import com.example.app.AppVersion;
+import com.example.app.ResourcesFileAppVersionLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +18,7 @@ public class HBaseExplorerApp
 
     public static void createAndShowGUI()
     {
-        AppVersion appVersion = AppVersion.fromVersionFile();
+        AppVersion appVersion = new ResourcesFileAppVersionLoader().load();
         appVersion.log(logger);
 
         new StartWindow(appVersion);
